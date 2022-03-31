@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <div class="card text-white bg-success mb-3" *ngIf="books.length > 0">
+          <h2>Lista de libros</h2>
+        </div>
+        <div class="card text-white bg-danger mb-3" *ngIf="books.length == 0">
+          <h2>no hay información</h2>
+        </div>
+
+        <div *ngIf="books.length > 0">
+          <table class="table table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Autor</th>
+                <th scope="col">Editor</th>
+                <th scope="col">Genero</th>
+                <th scope="col">Isbn</th>
+                <th scope="col">Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let book of books">
+                <td>{{ book.name }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.publisher }}</td>
+                <td>{{ book.genre }}</td>
+                <th>{{ book.isbn }}</th>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-lg"
+                    data-toggle="modal"
+                    data-target="#myModal"
+                    (click)="showPopup(book)"
+                  >
+                    Eliminar
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-lg"
+                    data-toggle="modal"
+                    data-target="#modalActualizar"
+                    (click)="showPopup(book)"
+                  >
+                    Editar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </blockquote>
+    </div>
+  </div>
+</div>
