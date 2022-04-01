@@ -20,6 +20,14 @@ export class BookService {
     let urlGetBook = this.url + "book/" + isbn;
     return this.httpClient.get<Book>(urlGetBook);
   }
+  getBookByAuthor(author : any):Observable<Book[]> {
+    let urlGetBook = this.url + "author/" + author;
+    return this.httpClient.get<Book[]>(urlGetBook);
+  }
+  getBookByPublisher(publisher : any):Observable<Book[]> {
+    let urlGetBook = this.url + "publisher/" + publisher;
+    return this.httpClient.get<Book[]>(urlGetBook);
+  }
   saveBook(formBook: Book):Observable<Book> {
     let urlGetBook = this.url + "new";
     return this.httpClient.post<Book>(urlGetBook,formBook);

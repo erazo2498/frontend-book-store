@@ -13,20 +13,33 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/create">Crear libro</a>
         </li>
       </ul>
       
-      <form class="d-flex">
+      
+
+
+      <form class="d-flex" [formGroup]="myForm">
+        <select formControlName="searchType" class="btn btn-outline-light me-2" 
+        aria-label="Default select example" 
+        >
+        <option disabled selected value="">Tipo de busqueda</option>
+          <option selected value="1">Autor</option>
+          <option value="2">Editor</option>
+        </select>
         <input
           class="form-control me-2"
           type="search"
-          placeholder="Search"
+          placeholder="Buscar"
           aria-label="Search"
+          formControlName="valueLookFor"
         />
-        <button class="btn btn-outline-light" type="submit">Search</button>
+        <button class="btn btn-outline-light" type="submit" [disabled]="myForm.invalid"
+        (click)="emitirConsulta()">Buscar</button>
       </form>  
     </div>
   </div>
