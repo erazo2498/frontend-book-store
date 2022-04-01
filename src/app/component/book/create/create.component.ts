@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Book } from 'src/app/model/book';
 import { BookService } from 'src/app/services/book.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create',
@@ -11,15 +13,35 @@ import { BookService } from 'src/app/services/book.service';
 export class CreateComponent implements OnInit {
   
   createForm = new FormGroup({
-    bookName : new FormControl('',Validators.required),
-    bookAuthor : new FormControl('',Validators.required),
-    bookPublisher : new FormControl(''),
-    bookGenre : new FormControl('')
-  })
+    name : new FormControl('',Validators.required),
+    author : new FormControl('',Validators.required),
+    publisher : new FormControl(''),
+    genre : new FormControl('')
+  });
 
-  constructor(private bookService: BookService) {}
+  constructor(private router:Router, private bookService:BookService) {}
 
   ngOnInit(): void {
+  }
+
+  newBook(formBook:Book){
+    console.log(formBook);
+    this.bookService.saveBook(formBook).subscribe(response => {
+      if(response.name == formBook.name){
+        Swal.fire(
+          'Libro agregado!',
+          'Se ha agregado el libro con exito!',
+          'success'
+        );
+      }else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+        })
+      }
+      this.router.navigate(['list']);
+    });
   }
 
 }

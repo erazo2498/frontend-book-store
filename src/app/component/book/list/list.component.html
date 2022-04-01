@@ -18,36 +18,15 @@
                 <th scope="col">Editor</th>
                 <th scope="col">Genero</th>
                 <th scope="col">Isbn</th>
-                <th scope="col">Opciones</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let book of books">
+              <tr *ngFor="let book of books" (click)="editarBook(book.isbn)">
                 <td>{{ book.name }}</td>
                 <td>{{ book.author }}</td>
                 <td>{{ book.publisher }}</td>
                 <td>{{ book.genre }}</td>
                 <th>{{ book.isbn }}</th>
-                <td>
-                  <button
-                    type="button"
-                    class="btn btn-danger btn-lg"
-                    data-toggle="modal"
-                    data-target="#myModal"
-                    (click)="showPopup(book)"
-                  >
-                    Eliminar
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-primary btn-lg"
-                    data-toggle="modal"
-                    data-target="#modalActualizar"
-                    (click)="showPopup(book)"
-                  >
-                    Editar
-                  </button>
-                </td>
               </tr>
             </tbody>
           </table>

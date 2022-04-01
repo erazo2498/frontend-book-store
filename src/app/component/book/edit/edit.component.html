@@ -1,1 +1,53 @@
-<p>edit works!</p>
+<div class="container">
+    <br>
+    <form class="needs-validation" novalidate [formGroup]="editForm" (ngSubmit)="updateBook(editForm.value)">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Nombre</label>
+            <input type="text" class="form-control" formControlName="bookName" [ngModel]="selectedBook.name"
+              placeholder="Escribe un nombre" required>
+            <div class="invalid-feedback">
+              Por favor escriba el nombre del libro.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Autor</label>
+            <input type="text" class="form-control" formControlName="bookAuthor" [ngModel]="selectedBook.author"
+              placeholder="Escribe el autor" required>
+            <div class="invalid-feedback">
+              Por favor escriba el autor.
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="validationCustom05">Editor</label>
+            <input type="text" class="form-control" formControlName="bookPublisher" [ngModel]="selectedBook.publisher"
+              placeholder="Escribe el Editor">
+            <div class="invalid-feedback">
+              Por favor ingrese el Editor.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Genero</label>
+            <input type="text" class="form-control" formControlName="bookGenre" [ngModel]="selectedBook.genre"
+              placeholder="Escribe un genero">
+            <div class="invalid-feedback">
+              Por favor ingrese un genero.
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-6 mb-3" style="text-align: end">
+            <br>
+            <button style="margin-top: 7px" class="btn btn-primary btn-block" type="submit" [disabled]="editForm.invalid"
+                >Actualizar</button>
+          </div>
+          <div class="col-md-6 mb-3">
+            <br>
+            <button style="margin-top: 7px" class="btn btn-danger btn-block"
+              (click)="deleteBook()">Eliminar</button>
+          </div>
+        </div>
+      </form>
+</div>
