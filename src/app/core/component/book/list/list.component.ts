@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Book } from 'src/app/model/book';
-import { BookService } from 'src/app/services/book.service';
-import { CommunicationComponentsService } from 'src/app/services/communication-components.service';
+import { Book } from 'src/app/core/model/book';
+import { BookService } from 'src/app/core/services/book.service';
+import { CommunicationComponentsService } from 'src/app/core/services/communication-components.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list',
@@ -17,13 +18,19 @@ export class ListComponent implements OnInit {
       (myForm:any) => {
         console.log(myForm);
         if(myForm.searchType == 1){
-          this.bookService.getBookByAuthor(myForm.valueLookFor).subscribe(books => {
-            this.books = books;
-          });
+          this.bookService.getBookByAuthor(myForm.valueLookFor).subscribe(
+            books => this.books = books,
+            () => Swal.fire('Busqueda',
+            'no hay libros con esa caracteristica',
+            'error')
+          );
         }else{
-          this.bookService.getBookByPublisher(myForm.valueLookFor).subscribe(books => {
-            this.books = books;
-          });
+          this.bookService.getBookByPublisher(myForm.valueLookFor).subscribe(
+            books => this.books = books,
+            () => Swal.fire('Busqueda',
+            'no hay libros con esa caracteristica',
+            'error')
+          );
         }
       })
     }

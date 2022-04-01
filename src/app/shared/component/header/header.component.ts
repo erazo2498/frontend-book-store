@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CommunicationComponentsService } from 'src/app/services/communication-components.service';
+import { CommunicationComponentsService } from 'src/app/core/services/communication-components.service';
 
 @Component({
   selector: 'app-header',

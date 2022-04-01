@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListComponent } from '../app/component/book/list/list.component'
-import { CreateComponent } from './component/book/create/create.component';
-import { EditComponent } from './component/book/edit/edit.component';
+import { ListComponent } from './core/component/book/list/list.component'
+import { CreateComponent } from './core/component/book/create/create.component';
+import { EditComponent } from './core/component/book/edit/edit.component';
 
 const routes: Routes = [
   { path:'' , redirectTo:'list', pathMatch:'full'},
